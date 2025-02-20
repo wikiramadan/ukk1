@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .btn-container {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+  
