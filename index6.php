@@ -1,32 +1,33 @@
 <?php
-    $hargaawal = isset($_POST['hargaawal']) ? $_POST['hargaawal'] : '';
-    $diskon = isset($_POST['diskon']) ? $_POST['diskon'] : '';
+$hargaawal = isset($_POST['hargaawal']) ? trim($_POST['hargaawal']):'';
+$hargadiskon = isset($_POST['hargadiskon']) ? trim($_POST['hargadiskon']): '';
 
-    $hargadiskon = 0;
-    $hargatotal = 0;
+$hargaawal = 0;
+$hargadiskon = 0;
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if ($hargaawal == "") {
-            echo "<script>alert('Silahkan masukkan harga awal');
-            window.location='index.php';
-            </script>";
-        } elseif ($diskon == "") {
-            echo "<script>alert('Silahkan masukkan diskon barang');
-            window.location='index.php';
-            </script>";
-        } elseif ($diskon > 100) {
-            echo "<script>alert('Diskon Terlalu Banyak');
-            window.location='index.php';
-            </script>";
-        } elseif ($diskon < 0) {
-            echo "<script>alert('Diskon tidak valid');
-            window.location='index.php';
-            </script>";
-        } else {
-            $hargadiskon = ($hargaawal * $diskon) / 100;
-            $hargatotal = $hargaawal - $hargadiskon;
-        }
+// Proses perhitungan jika form disubmit
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($hargaawal == "") {
+        echo "<script>alert('Silahkan masukkan harga awal');
+        window.location='index6.php';
+        </script>";
+    } elseif ($hargadiskon == "") {
+        echo "<script>alert('Silahkan masukkan diskon barang');
+        window.location='index6.php';
+        </script>";
+    } elseif ($hargadiskon > 100) {
+        echo "<script>alert('Diskon Terlalu Banyak');
+        window.location='index6.php';
+        </script>";
+    } elseif ($hargadiskon < 0) {
+        echo "<script>alert('Diskon tidak valid');
+        window.location='index6.php';
+        </script>";
+    } else {
+        $hargadiskon = ($hargaawal * $hargadiskon) / 100;
+        $hargatotal = $hargaawal - $hargadiskon;
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,9 +35,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>appukk</title>
     <style>
-        .kotak1 {
+       .kotak1 {
             width: 600px;
             height:750px; 
             background-color: rgb(20, 240, 237);
@@ -77,64 +78,55 @@
             float: left;
             padding: 10px;
         }
+
     </style>
 </head>
-
 <body>
     <div class="kotak1">
         <div class="kotak2">
             <center>
-                <img src="img/logorpl2.jpg" width="100" alt="logo">
+               <img src="img/logorpl2.jpg" width="100" alt="logo"> 
             </center>
             <div class="kotak3">
-                <center><h2>Aplikasi Menghitung Diskon</h2></center>
+                <center><h2></h2>Aplikasi menghitung diskon</center>
                 <form action="" method="post">
                     <div class="row">
-                        <div class="kolom1">
-                            <label for="">Harga Awal</label>
-                        </div>
-                        <div class="kolom2">
-                            <input type="text" name="hargaawal" id="" value="<?php echo $hargaawal; ?>">
-                        </div>
+                       <div class="kolom1">
+                        <label for="">hargaawal</label>
+                       </div>
+                      <div class="kolom2">
+                        <input type="text" name="hargaawal" id="" value="<?php echo $hargaawal; ?>">
+                      </div>
                     </div>
                     <div class="row">
                         <div class="kolom1">
-                            <label for="">Diskon</label>
+                            <label for="">diskon</label>
                         </div>
                         <div class="kolom2">
-                            <input type="number" name="diskon" id="" value="<?php echo $diskon; ?>">
+                            <input type="number" name="hargadiskon" value="<?php echo $hargadiskon; ?>">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="kolom1"></div>  
+                        <div class="kolom1"></div>
                         <div class="kolom2">
-                            <input type="submit" value="Hitung">
+                            <input type="submit" value="hitung">
                         </div>
                     </div>
                 </form>
 
-                <center><h3>Hasil</h3></center>
                 <div class="row">
-                    <div class="kolom1"><label>Harga Awal</label></div>
+                    <div class="kolom1"><label>hargaawal</label></div>
                     <div class="kolom2">
                         <label>
-                            : Rp <?php echo isset($hargaawal) && $hargaawal !== '' ? number_format($hargaawal, 2) : '0.00'; ?>
+                            : RP <?php echo isset($hargaawal) && $hargaawal !== '' ? number_format($hargaawal, 2) : '0.00'; ?>
                         </label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="kolom1"><label>Jumlah Diskon</label></div>
+                    <div class="kolom1"><label>hargadiskon</label></div>
                     <div class="kolom2">
                         <label>
-                            : <?php echo isset($diskon) && $diskon !== '' ? $diskon . '%' : '0%'; ?>
-                        </label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="kolom1"><label>Harga Diskon</label></div>
-                    <div class="kolom2">
-                        <label>
-                            : Rp <?php echo isset($hargadiskon) ? number_format($hargadiskon, 2) : '0.00'; ?>
+                            : RP <?php echo isset($hargadiskon) && $hargadiskon !== '' ? $hargadiskon . '%' : '0%';?>
                         </label>
                     </div>
                 </div>
@@ -146,6 +138,7 @@
                         </label>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
